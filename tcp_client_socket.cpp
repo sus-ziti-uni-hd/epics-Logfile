@@ -212,6 +212,13 @@ bool SuS::logfile::tcp_client_socket::connect_to_ip(int _ai_family,
       return false;
    }
 #endif
+#ifdef TCP_FASTOPEN_CONNECT
+   if (m_d->m_use_socks) {
+      const auto one = int{1};
+      // do not fail if this call fails
+      ::setsockopt(m_d->m_socket, IPPROTO_TCP, TCP_FASTOPEN_CONNECT, &one, sizeof one);
+   }
+#endif
 
    if (::connect(m_d->m_socket, _ai_addr, _ai_addrlen) != 0) {
 #ifdef HAVE_STRERROR_R
