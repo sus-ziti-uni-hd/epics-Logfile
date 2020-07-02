@@ -458,7 +458,7 @@ void SuS::logfile::tcp_client_socket::start_SSL() {
       throw std::runtime_error{"Could not establish SSL session."};
    }
    const auto cert = ::SSL_get_peer_certificate(m_d->m_ssl);
-   SuS_LOG_STREAM(config, log_id(), "name: " << cert->name);
+   SuS_LOG_STREAM(config, log_id(), "name: " << X509_get_subject_name(cert));
 
    const auto verify_result = ::SSL_get_verify_result(m_d->m_ssl);
 
