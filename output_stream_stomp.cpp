@@ -220,7 +220,7 @@ bool SuS::logfile::output_stream_stomp::do_write(const log_event &_le) {
            "<entry><string>APPLICATION-ID</string><string>"
         << m_app_name << "</string></entry>\n"
                          "<entry><string>CREATETIME</string><string>"
-        << _le.time_string << "</string></entry>\n"
+        << format_time_GMT(_le.time) << "</string></entry>\n"
                               "<entry><string>HOST</string><string>"
         << m_host << "</string></entry>\n"
                      "<entry><string>NAME</string><string>"

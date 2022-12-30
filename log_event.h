@@ -21,8 +21,12 @@ struct log_event {
    mutable std::string time_string;
 }; // struct log_event
 
-//! Format time as string in ISO format.
+//! Format time in local time or ISO format, as configured with SuS_LOG_GMT.
 std::string format_time(const std::chrono::system_clock::time_point &_t);
+//! Format time as string in local time.
+std::string format_time_local(const std::chrono::system_clock::time_point &_t);
+//! Format time as string in ISO format.
+std::string format_time_GMT(const std::chrono::system_clock::time_point &_t);
 //! Format time as string in seconds-since-epoch format.
 std::string format_timestamp(const std::chrono::system_clock::time_point &_t);
 
